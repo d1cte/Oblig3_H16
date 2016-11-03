@@ -22,8 +22,13 @@ public class MyHashMapTest {
 	
 	@Test
 	public void putShouldIncreaseSizeOfMyHashMap() {
-		assertThat(hashMap.size(), is(3));
 		hashMap.put("Lisa", 18);
+		assertThat(hashMap.size(), is(4));
+	}
+	
+	@Test
+	public void putShouldAllowDuplicateKeys() {
+		hashMap.put("Adam", 18);
 		assertThat(hashMap.size(), is(4));
 	}
 	
