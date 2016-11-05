@@ -104,6 +104,20 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
     return null;
   }
   
+  public LinkedList<V> getAll(K key) {
+	  int bucketIndex = hash(key.hashCode());
+	  LinkedList<V> allValues = new LinkedList<>();
+	  
+	  if(table[bucketIndex] != null) {
+		  LinkedList<Entry<K, V>> bucket = table[bucketIndex]; 
+	      for (Entry<K, V> entry: bucket)
+	          if (entry.getKey().equals(key)) 
+	            allValues.add(entry.getValue());
+	      return allValues;
+	  }
+	  return null;
+  }
+  
   @Override /** Return true if this map contains no entries */
   public boolean isEmpty() {
     return size == 0;
