@@ -1,0 +1,13 @@
+dfs(vertex v)
+	create empty stack
+	push v to stack
+	
+	while(stack is not empty) {
+		current = stack.pop()
+		
+		if (current is not visited)
+			add current to visited
+			
+			for (every node connected directly with current)
+				stack.push(node)
+	}
