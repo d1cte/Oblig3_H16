@@ -38,7 +38,7 @@ public class AbstractGraphTest {
 	}
 	
 	@Test
-	public void dfsWithStackShouldReturnCorrectTree() {
+	public void dfsUsingStackShouldReturnCorrectTree() {
 		int[] expectedSearchOrder = {0, 1, 2, 3, 4};
 		
 		Tree searchTree = graph.dfsUsingStack(0);
