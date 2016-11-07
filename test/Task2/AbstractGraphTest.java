@@ -96,6 +96,16 @@ public class AbstractGraphTest {
 		assertThat(graph.getPath(0, 4).toArray(), is(expectedPath));
 		assertThat(graph2.getPath(2, 0).toArray(), is(expectedPath2));
 		assertThat(graph3.getPath(3, 0).toArray(), is(expectedPath3));
-
+	}
+	
+	@Test
+	public void isConnectedShouldReturnTrue() {
+		assertTrue(graph.isConnected());
+		assertTrue(graph2.isConnected());
+	}
+	
+	@Test
+	public void isConnectedShouldReturnFalse() {
+		assertFalse(graph3.isConnected());	
 	}
 }
