@@ -211,6 +211,8 @@ public abstract class AbstractGraph<V> implements Graph<V> {
 				List<Edge> currentNeighbors = neighbors.get(current);
 				for(int i = currentNeighbors.size() - 1; i >= 0; i--) {
 					Edge currentEdge = currentNeighbors.get(i);
+					if(!visited[currentEdge.v])
+						parent[currentEdge.v] = current;
 					stack.push(currentEdge.v);
 				}
 		

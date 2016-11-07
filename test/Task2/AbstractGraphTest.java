@@ -46,4 +46,25 @@ public class AbstractGraphTest {
 		
 		assertThat(searchOrder.toArray(), is(expectedSearchOrder));
 	}
+	
+	@Test
+	public void dfsGetParentShouldReturnCorrectParent() {
+		Tree searchTree = graph.dfs(0);
+		assertThat(searchTree.getParent(0), is(-1)); 
+		assertThat(searchTree.getParent(1), is(0));
+		assertThat(searchTree.getParent(2), is(1));
+		assertThat(searchTree.getParent(3), is(2));
+		assertThat(searchTree.getParent(4), is(1));
+	}
+	
+	@Test
+	public void dfsUsingStackGetParentShouldReturnCorrectParent() {
+		Tree searchTree = graph.dfsUsingStack(0);
+		assertThat(searchTree.getParent(0), is(-1)); 
+		assertThat(searchTree.getParent(1), is(0));
+		assertThat(searchTree.getParent(2), is(1));
+		assertThat(searchTree.getParent(3), is(2));
+		assertThat(searchTree.getParent(4), is(1));
+	}
+	
 }
