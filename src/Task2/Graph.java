@@ -1,5 +1,7 @@
 package Task2;
 
+import Task2.AbstractGraph.Tree;
+
 public interface Graph<V> {
   /** Return the number of vertices in the graph */
   public int getSize();
@@ -34,6 +36,11 @@ public interface Graph<V> {
   /** Obtain a depth-first search tree */
   public AbstractGraph<V>.Tree dfs(int v);
 
+  /** Obtain a depth-first search tree using stack */
+  public AbstractGraph<V>.Tree dfsUsingStack(int v);
+  
   /** Obtain a breadth-first search tree */
   public AbstractGraph<V>.Tree bfs(int v);
+
+
 }
