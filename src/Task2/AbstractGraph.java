@@ -190,41 +190,41 @@ public abstract class AbstractGraph<V> implements Graph<V> {
 	
 	@Override /** Stack method for DFS search */
 	public Tree dfsUsingStack(int v) {
-		Deque<Integer> stack = new ArrayDeque<>();
 		List<Integer> searchOrder = new ArrayList<>();
-		boolean[] visited = new boolean[vertices.size()];
+		boolean[] isVisited = new boolean[vertices.size()];
+		
 		int[] parent = new int[vertices.size()];
 		for (int i = 0; i < parent.length; i++)
 			parent[i] = -1; // Initialize parent[i] to -1
-
-		stack.push(v);
 		
+		Deque<Integer> stack = new ArrayDeque<>();		
+		stack.push(v);
+
 		while(!stack.isEmpty()) {
 			int current = stack.pop();
 		
-			if(!visited[current]) {
+			if(!isVisited[current]) {
 				// Visit
-				visited[current] = true;
+				isVisited[current] = true;
 				searchOrder.add(current);
+				
 				List<Edge> currentNeighbors = neighbors.get(current);
+				
 				for(int i = currentNeighbors.size() - 1; i >= 0; i--) {
 					Edge currentEdge = currentNeighbors.get(i);
-					if(!visited[currentEdge.v])
-						parent[currentEdge.v] = current;
 					stack.push(currentEdge.v);
+					
+					if(!isVisited[currentEdge.v])
+						parent[currentEdge.v] = current;
 				}
-		
 			}
-
 		}
-		
-
 		return new Tree(v, parent, searchOrder);
 	}
-
+	
 	@SuppressWarnings("unchecked")
 	@Override /** Find shortest path between two nodes */
-	public List<Integer> getPath(int u, int v) {
+ 	public List<Integer> getPath(int u, int v) {
 		Tree searchTree = bfs(v);
 		List<Integer> shortestPath = (List<Integer>) searchTree.getPath(u);
 		if(shortestPath.size() > 1)
