@@ -190,15 +190,13 @@ public abstract class AbstractGraph<V> implements Graph<V> {
 	
 	/** Stack method for DFS search */
 	public Tree dfsUsingStack(int v) {
-		// remove:
+		Deque<Integer> stack = new ArrayDeque<>();
+		List<Integer> searchOrder = new ArrayList<>();
+		boolean[] visited = new boolean[vertices.size()];
 		int[] parent = new int[vertices.size()];
 		for (int i = 0; i < parent.length; i++)
 			parent[i] = -1; // Initialize parent[i] to -1
 
-		Deque<Integer> stack = new ArrayDeque<>();
-		List<Integer> searchOrder = new ArrayList<>();
-		boolean[] visited = new boolean[vertices.size()];
-		
 		stack.push(v);
 		
 		while(!stack.isEmpty()) {
