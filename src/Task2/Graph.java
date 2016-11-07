@@ -42,6 +42,9 @@ public interface Graph<V> {
   
   /** Obtain a breadth-first search tree */
   public AbstractGraph<V>.Tree bfs(int v);
+  
+  /** Return true if graph is connected */
+  public boolean isConnected();
 
   /** Find shortest path between two nodes */
   public List<Integer> getPath(int u, int v);
