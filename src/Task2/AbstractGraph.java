@@ -188,7 +188,7 @@ public abstract class AbstractGraph<V> implements Graph<V> {
 		}
 	}
 	
-	/** Stack method for DFS search */
+	@Override /** Stack method for DFS search */
 	public Tree dfsUsingStack(int v) {
 		Deque<Integer> stack = new ArrayDeque<>();
 		List<Integer> searchOrder = new ArrayList<>();
@@ -220,6 +220,23 @@ public abstract class AbstractGraph<V> implements Graph<V> {
 		
 
 		return new Tree(v, parent, searchOrder);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override /** Find shortest path between two nodes */
+	public List<Integer> getPath(int u, int v) {
+		List<Integer> shortestPath = new ArrayList<>();
+		Tree searchTree = bfs(u);
+		List<Integer> pathFromVtoU = (List<Integer>) searchTree.getPath(v);
+
+		if(pathFromVtoU.size() > 1) {
+			// Reverse pathFromVtoU to get correct order
+			for(int i = pathFromVtoU.size() - 1; i >= 0; i--) {
+				shortestPath.add(pathFromVtoU.get(i));
+			}
+		return shortestPath;
+		}
+		return null;
 	}
 	
 	@Override /** Starting bfs search from vertex v */
