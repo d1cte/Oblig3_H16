@@ -225,18 +225,15 @@ public abstract class AbstractGraph<V> implements Graph<V> {
 	@SuppressWarnings("unchecked")
 	@Override /** Find shortest path between two nodes */
 	public List<Integer> getPath(int u, int v) {
-		List<Integer> shortestPath = new ArrayList<>();
-		Tree searchTree = bfs(u);
-		List<Integer> pathFromVtoU = (List<Integer>) searchTree.getPath(v);
-
-		if(pathFromVtoU.size() > 1) {
-			// Reverse pathFromVtoU to get correct order
-			for(int i = pathFromVtoU.size() - 1; i >= 0; i--) {
-				shortestPath.add(pathFromVtoU.get(i));
-			}
-		return shortestPath;
-		}
+		Tree searchTree = bfs(v);
+		List<Integer> shortestPath = (List<Integer>) searchTree.getPath(u);
+		if(shortestPath.size() > 1)
+			return shortestPath;
 		return null;
+	}
+	
+	public boolean isConnected() {
+		return true;
 	}
 	
 	@Override /** Starting bfs search from vertex v */
