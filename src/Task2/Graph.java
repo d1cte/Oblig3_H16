@@ -1,4 +1,5 @@
 package Task2;
+import java.util.*;
 
 import Task2.AbstractGraph.Tree;
 
@@ -42,5 +43,7 @@ public interface Graph<V> {
   /** Obtain a breadth-first search tree */
   public AbstractGraph<V>.Tree bfs(int v);
 
+  /** Find shortest path between two nodes */
+  public List<Integer> getPath(int u, int v);
 
 }
