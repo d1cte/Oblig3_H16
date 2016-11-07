@@ -9,7 +9,7 @@ import org.hamcrest.Matcher;
 import Task2.AbstractGraph.Tree;
 
 public class AbstractGraphTest {
-	private static Graph<Integer> graph;
+	private static Graph<Integer> graph, graph2, graph3;
 	
 	@BeforeClass
 	public static void setUp() {
@@ -23,8 +23,24 @@ public class AbstractGraphTest {
 				{4, 1}
 		};
 		
-		graph = new UnweightedGraph<>(vertices, edges);
+		int[][] edges2 = {
+				{0, 1}, {0, 3},
+				{1, 0}, {1, 2}, {1, 4}, 
+				{2, 1}, {2, 3}, 
+				{3, 0}, {3, 2}, 
+				{4, 1}
+		};
 		
+		int[][] edges3 = {
+				{0, 1},
+				{1, 0}, {1, 2}, {1, 3}, 
+				{2, 1}, {2, 3}, 
+				{3, 1}, {3, 2}
+		};
+		
+		graph = new UnweightedGraph<>(vertices, edges);
+		graph2 = new UnweightedGraph<>(vertices, edges2);
+		graph3 = new UnweightedGraph<>(vertices, edges3);
 	}
 	
 	@Test
@@ -67,4 +83,19 @@ public class AbstractGraphTest {
 		assertThat(searchTree.getParent(4), is(1));
 	}
 	
+	@Test
+	public void getPathWithInputWithNoPathShouldReturnNull() {
+		assertNull(graph3.getPath(3, 4));
+	}
+	
+	@Test
+	public void getPathShouldReturnCorrectPathBetweenNodes() {
+		int[] expectedPath = {0, 1, 4};
+		int[] expectedPath2 = {2, 1, 0};
+		int[] expectedPath3 = {3, 1, 0};
+		assertThat(graph.getPath(0, 4).toArray(), is(expectedPath));
+		assertThat(graph2.getPath(2, 0).toArray(), is(expectedPath2));
+		assertThat(graph3.getPath(3, 0).toArray(), is(expectedPath3));
+
+	}
 }
