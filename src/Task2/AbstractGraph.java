@@ -233,7 +233,11 @@ public abstract class AbstractGraph<V> implements Graph<V> {
 	}
 	
 	public boolean isConnected() {
-		return true;
+		int numberOfVerticesFound = bfs(0).getNumberOfVerticesFound();
+		
+		if(numberOfVerticesFound == getSize())
+			return true;
+		return false;
 	}
 	
 	@Override /** Starting bfs search from vertex v */
